@@ -1,0 +1,199 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.itemsSection {
+  background: var(--card);
+  /* border: 1px solid var(--border);
+  padding: 0.5rem; */
+  border-radius: 8px;
+  width: 100%;
+}
+
+.itemsSection > input {
+  width: 35%;
+}
+
+.itemRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.threeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.addBtn,
+.removeBtn {
+  background: transparent;
+  color: #2563eb;
+  border: none;
+  cursor: pointer;
+}
+
+.calcRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.totalBox {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.submitBtn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background: #1d4ed8;
+}
+
+.descTextArea {
+  border: 1px solid var(--border);
+  padding: 0.3rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.descTextArea:focus {
+  outline: none;
+  border: 2px solid var(--ring);
+}
+
+/* date picker */
+
+.root {
+  padding: 0.5rem;
+  /* width: 100px; */
+}
+
+.day {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.day_button {
+  font-size: 0.9rem;
+  border: none;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: var(--border);
+}
+.today {
+  color: var(--primary);
+  background-color: var(--accent);
+  outline: 1px solid var(--border);
+}
+
+.selected {
+  background-color: var(--sidebar-primary);
+}
+
+.chevron {
+  fill: var(--primary);
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+.button_next,
+.button_previous {
+  padding: 0.5rem;
+}
+
+.button_next:hover {
+  background-color: var(--border);
+}
+.button_previous:hover {
+  background-color: var(--border);
+}
+
+.nav {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  right: 10px;
+  top: 5px;
+}
+
+.months {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.numInput::-webkit-outer-spin-button,
+.numInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.numInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--label);
+}
+
+.removeBtn {
+  color: #ef4444;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+@media screen and (min-width: 800px) {
+  .itemRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+
+.removeBtn {
+margin-top: 1rem;
+}
+}

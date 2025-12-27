@@ -1,0 +1,28 @@
+.zoomControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.zoomButton {
+  border: none;
+  background: #f1f1f1;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.zoomButton:hover {
+  background: #e2e2e2;
+}
+
+.zoomSlider {
+  width: 100px;
+}
+
+.zoomLabel {
+  font-size: 13px;
+  color: #333;
+}

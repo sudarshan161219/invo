@@ -1,0 +1,20 @@
+export const labelColors = [
+  { name: "Black", hex: "#000000" },
+  { name: "Slate 800", hex: "#333333" },
+  { name: "Slate 700", hex: "#4B5563" },
+  { name: "Slate 600", hex: "#6B7280" },
+  { name: "Corporate Blue", hex: "#1a4dbf" },
+  { name: "Fun Pink", hex: "#ff6f91" },
+  { name: "Compact Indigo", hex: "#4f46e5" },
+
+  { name: "Red", hex: "#ef4444" },
+  { name: "Orange", hex: "#f97316" },
+  { name: "Amber", hex: "#f59e0b" },
+  { name: "Yellow", hex: "#eab308" },
+  { name: "Green", hex: "#22c55e" },
+  { name: "Emerald", hex: "#10b981" },
+  { name: "Blue", hex: "#3b82f6" },
+  { name: "Indigo", hex: "#6366f1" },
+  { name: "Purple", hex: "#8b5cf6" },
+  { name: "Pink", hex: "#ec4899" },
+];

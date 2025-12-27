@@ -1,0 +1,64 @@
+.totalBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+ 
+}
+
+/* Shared row styles */
+.subtotal,
+.discount,
+.taxable,
+.tax,
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* Labels */
+.subtotal p,
+.discount p,
+.taxable p,
+.tax p {
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* Values */
+.subtotal span,
+.taxable span,
+.tax span {
+  font-weight: 500;
+}
+
+/* Discount styling */
+.discount span {
+  color: var(--destructive);
+  font-weight: 500;
+}
+
+/* Divider before total */
+.total {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed var(--border);
+}
+
+/* Total emphasis */
+.total p {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.totalSpan {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--foreground);
+}

@@ -1,0 +1,28 @@
+.clientContainer {
+  width: 100%;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.addressGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .addressGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,12 @@
+.label {
+  font-size: 0.8rem;
+  color: var(--label);
+}
+
+.cardH3 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--muted-foreground);
+}

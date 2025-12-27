@@ -1,0 +1,362 @@
+/* =========================================
+   1. THEME CONFIGURATION (Variables)
+   Copy this block to other templates and 
+   just change colors/fonts to create new styles.
+========================================= */
+:root {
+  /* Colors */
+  --color-primary: #ff6b6b;        /* Main Accent (Pink/Red) */
+  --color-secondary: #68d391;      /* Success/Discount (Green) */
+  --color-text-main: #2d3748;      /* Dark Grey */
+  --color-text-muted: #718096;     /* Light Grey */
+  --color-text-light: #a0aec0;     /* Footer Text */
+  
+  --bg-paper: #ffffff;
+  --bg-subtle: #f7fafc;
+  --bg-sender: #ebf8ff;            /* Blue tint */
+  --bg-client: #faf5ff;            /* Purple tint */
+  --bg-shipping: #f0fff4;          /* Green tint */
+  --bg-dark: #2d3748;              /* Summary Card Background */
+
+  --border-light: #e2e8f0;
+  --border-dashed: #cbd5e0;
+  --border-sender: #bee3f8;
+  --border-client: #e9d8fd;
+  --border-shipping: #c6f6d5;
+
+  /* Typography */
+  --font-base: "Quicksand", "Varela Round", system-ui, sans-serif;
+  --text-xs: 8pt;
+  --text-sm: 9pt;
+  --text-base: 10pt;
+  --text-lg: 12pt;
+  --text-xl: 22pt;
+}
+
+/* =========================================
+   2. PRINT & PAGE DEFAULTS (Standard Practice)
+========================================= */
+@page {
+  size: A4;
+  margin: 0; /* We handle margins in .invoice padding */
+}
+
+/* Global Print Settings */
+.invoice, .invoice * {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   3. BASE DOCUMENT LAYOUT (A4 Skeleton)
+========================================= */
+.invoice {
+  /* Standard A4 Dimensions */
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: 0 auto; /* Centers in preview */
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-paper);
+  
+  /* Typography Defaults */
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  line-height: 1.4;
+  color: var(--color-text-main);
+  
+  /* Screen Preview Shadow (Optional - looks nice in app) */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   4. SECTIONS
+========================================= */
+
+/* --- HEADER --- */
+.header {
+  margin-bottom: 18pt;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16pt;
+}
+
+.mainTitle {
+  font-size: var(--text-xl);
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.tagline {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: 2pt;
+}
+
+/* --- META BUBBLE BAR --- */
+.metaBubble {
+  margin-top: 10pt;
+  display: grid;
+  grid-template-columns: repeat(2, auto); /* Flexible columns */
+  gap: 6pt 16pt;
+
+  padding: 10pt 12pt;
+  border-radius: 10pt;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-dashed);
+}
+
+.metaItem {
+  display: flex;
+  align-items: baseline;
+  gap: 4pt;
+}
+
+.metaLabel {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.metaValue {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* --- PARTIES (FROM / TO) --- */
+.partiesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14pt;
+  margin: 16pt 0;
+  
+  /* Prevent cards from splitting across pages */
+  page-break-inside: avoid; 
+}
+
+.card {
+  padding: 10pt;
+  border-radius: 12pt;
+  background: var(--bg-paper);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.senderCard {
+  background: var(--bg-sender);
+  border-color: var(--border-sender);
+}
+
+.clientCard {
+  background: var(--bg-client);
+  border-color: var(--border-client);
+}
+
+.cardTitle {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 6pt;
+}
+
+.partyName {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: 2pt;
+}
+
+.subtitle,
+.taxId,
+.contactInfo {
+  font-size: 8.5pt;
+  line-height: 1.4;
+  color: #4a5568; /* keeping specific grey for contrast */
+}
+
+/* --- SHIPPING & NOTES --- */
+.shippingBubble {
+  display: flex;
+  gap: 8pt;
+  align-items: center;
+  padding: 8pt 10pt;
+  margin-bottom: 14pt;
+  
+  background: var(--bg-shipping);
+  border: 1px solid var(--border-shipping);
+  border-radius: 10pt;
+  
+  font-size: 8.5pt;
+  color: #2f855a; /* Dark green text */
+  page-break-inside: avoid;
+}
+
+.descriptionBox {
+  margin-bottom: 16pt;
+  padding-left: 10pt;
+  border-left: 4px solid var(--color-primary);
+  page-break-inside: avoid;
+}
+
+.descriptionBox h3 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4pt;
+  color: var(--color-primary);
+}
+
+.descriptionBox p {
+  font-size: 9.5pt;
+  line-height: 1.5;
+}
+
+/* --- ITEMS TABLE --- */
+.itemsSection {
+  margin-top: 8pt;
+  flex-grow: 1; /* Pushes footer down if content is short */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 6pt;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.table td {
+  font-size: var(--text-sm);
+  padding: 6pt;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: top;
+}
+
+/* Prevent table rows from splitting awkwardly */
+.table tr {
+  page-break-inside: avoid;
+}
+
+.thDesc, .tdDesc { text-align: left; }
+.thQty, .tdQty { text-align: center; }
+.thRate, .tdRate { text-align: center; }
+.thTotal, .tdTotal { text-align: right; padding-right: 4pt; }
+
+.tdTotal {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* --- FOOTER & TOTALS --- */
+.footerLayout {
+  display: flex;
+  justify-content: space-between;
+  gap: 16pt;
+  margin-top: 18pt;
+  page-break-inside: avoid; /* Keep totals with payment info */
+}
+
+.footerLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.paymentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.paymentLabel {
+  font-size: 11pt;
+  font-weight: 600;
+}
+.paymentMethod {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-sm);
+}
+
+/* Signature */
+.sigContainer { margin-top: 1rem; }
+.sigText { font-size: 20pt; font-family: cursive; }
+.sigLabel { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* Summary Card */
+.summaryCard {
+  width: 42%;
+  padding: 12pt;
+  border-radius: 14pt;
+  background: var(--bg-dark);
+  color: #ffffff;
+}
+
+.sumRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  margin-bottom: 6pt;
+  opacity: 0.9;
+}
+
+.discountRow {
+  color: var(--color-secondary);
+}
+
+.totalRow {
+  margin-top: 10pt;
+  padding-top: 10pt;
+  border-top: 1px dashed rgba(255, 255, 255, 0.4);
+  font-size: 13pt;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --- BOTTOM FOOTER --- */
+.footer {
+  margin-top: 20pt;
+  font-size: 8.5pt;
+  text-align: center;
+  color: var(--color-text-light);
+}
+
+/* =========================================
+   5. PRINT OVERRIDES
+   Ensures the document looks perfect on paper/PDF
+========================================= */
+@media print {
+  .invoice {
+    margin: 0;
+    box-shadow: none;
+    /* Ensure background colors print */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    /* Reset height to allow natural flow if needed */
+    min-height: 0; 
+  }
+}

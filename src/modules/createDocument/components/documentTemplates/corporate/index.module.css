@@ -1,0 +1,373 @@
+/* =========================================
+   1. THEME CONFIGURATION (Variables)
+   "Corporate" - Bold, Trustworthy, High Contrast
+========================================= */
+:root {
+  /* Brand Palette */
+  --color-brand-primary: #3b82f6;  /* Royal Blue Accent */
+  --color-brand-dark: #111827;     /* Dark Navy/Black (Headers) */
+  --color-text-main: #1f2937;      /* Dark Grey (Body) */
+  --color-text-muted: #6b7280;     /* Light Grey (Labels) */
+  --color-border: #e5e7eb;         /* Light Borders */
+  
+  --bg-paper: #ffffff;
+  --bg-subtle: #f9fafb;            /* Striped Rows / Summary Box */
+  --bg-header: #111827;            /* Table Header Background */
+
+  /* Typography */
+  --font-base: "Inter", system-ui, -apple-system, sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-lg: 18px;   /* Total Row */
+  --text-xl: 20px;   /* Company Name */
+  --text-2xl: 32px;  /* Doc Title */
+  --text-3xl: 36px;  /* Main Header (if used) */
+}
+
+/* =========================================
+   2. PAGE DEFAULTS
+========================================= */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+.invoice, .invoice * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* =========================================
+   3. BASE LAYOUT (A4 Corporate)
+========================================= */
+.invoice {
+  /* Standard A4 */
+  width: 210mm;
+  min-height: 297mm;
+  
+  /* Layout Logic */
+  margin: 0 auto;
+  padding: 12.7mm 12.7mm; /* Standard 0.5in safe zone */
+  padding-top: 48px;      /* Extra top padding for the stripe visual */
+  
+  background: var(--bg-paper);
+  position: relative;     /* Anchor for absolute stripe */
+  
+  display: flex;
+  flex-direction: column;
+
+  /* Typography */
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+
+  /* Screen Shadow */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* STRIPE ACCENT (Visual flair) */
+.topStripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: var(--color-brand-dark);
+  border-bottom: 4px solid var(--color-brand-primary);
+  /* Ensure it prints */
+  print-color-adjust: exact; 
+}
+
+/* =========================================
+   4. HEADER SECTION
+========================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  margin-top: 16px;
+  gap: 20px;
+}
+
+/* Left Side: Branding */
+.branding {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1; 
+}
+
+.logoImg {
+  max-height: 20mm; /* ~0.8in constraint */
+  max-width: 65mm;
+  object-fit: contain;
+}
+
+.logoPlaceholder {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: #d1d5db;
+  text-transform: uppercase;
+}
+
+.companyName {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin: 0 0 4px 0;
+}
+
+.issuerAddress {
+  font-style: normal;
+  font-size: var(--text-sm);
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.taxId {
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+/* Right Side: Meta Data */
+.headerRight {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.docTitle {
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.metaRow dt {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+}
+
+.metaRow dd {
+  font-weight: 700;
+  font-size: var(--text-base);
+  margin: 0;
+  text-align: right;
+  min-width: 80px;
+}
+
+/* =========================================
+   5. PARTIES (CARDS)
+========================================= */
+.parties {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 40px;
+  page-break-inside: avoid;
+}
+
+.partyCard {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-brand-primary); /* Blue accent text */
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.partyContent {
+  font-size: var(--text-base);
+  color: var(--color-text-main);
+  border-left: 2px solid var(--color-border); /* The vertical accent line */
+  padding-left: 12px;
+}
+
+/* Payment List logic */
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paymentLabel {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paymentDetails {
+  font-size: var(--text-sm);
+  color: #4b5563;
+}
+
+/* =========================================
+   6. ITEMS TABLE (Solid Header)
+========================================= */
+.itemsSection {
+  margin-bottom: 40px;
+  flex-grow: 1;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th {
+  background-color: var(--bg-header); /* Black Header */
+  color: white;
+  font-weight: 600;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+
+.table td {
+  padding: 12px 16px;
+  font-size: var(--text-base);
+  color: var(--color-text-main);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+/* Zebra Striping */
+.table tbody tr:nth-child(even) {
+  background-color: var(--bg-subtle);
+}
+
+.table tr {
+  page-break-inside: avoid;
+}
+
+/* Column Widths */
+.colDesc   { text-align: left; width: 45%; }
+.colQty    { text-align: center; width: 15%; }
+.colRate   { text-align: center; width: 20%; }
+.colAmount { text-align: center; width: 20%; }
+
+.descText {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* =========================================
+   7. SUMMARY (Grey Box)
+========================================= */
+.summary {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+  page-break-inside: avoid;
+}
+
+.summary dl {
+  width: 300px;
+  background: var(--bg-subtle); /* Grey box */
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: var(--text-base);
+  color: #4b5563;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid var(--color-border);
+  
+  font-weight: 800;
+  font-size: var(--text-lg);
+  color: var(--color-brand-dark);
+}
+
+/* =========================================
+   8. FOOTER
+========================================= */
+.footerRegion {
+  margin-top: auto;
+  page-break-inside: avoid;
+}
+
+.signatureSection {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.signatureBlock {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.signatureImg {
+  max-height: 20mm;
+  margin-bottom: 4px;
+}
+
+.signatureLabel {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  border-top: 1px solid #d1d5db;
+  padding-top: 4px;
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  border-top: 2px solid var(--bg-subtle);
+  padding-top: 24px;
+}
+
+/* =========================================
+   9. PRINT OVERRIDES
+========================================= */
+@media print {
+  .invoice {
+    width: 100%;
+    margin: 0;
+    padding: 12.7mm; /* Standard safe margin */
+    padding-top: 48px; /* Maintain visual space for stripe */
+    min-height: 0;
+    box-shadow: none;
+    border: none;
+  }
+}

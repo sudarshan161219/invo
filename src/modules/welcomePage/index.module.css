@@ -1,0 +1,79 @@
+.wrapper {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.card {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  animation: fadeIn 0.4s ease;
+}
+
+[data-theme="dark"] .card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  opacity: 0.8;
+  font-size: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.startBtn {
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  .card {
+    padding: 2rem 1.4rem;
+  }
+
+  .wrapper {
+    padding: 1rem;
+  }
+}

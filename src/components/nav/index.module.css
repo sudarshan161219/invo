@@ -1,0 +1,148 @@
+/* ---- GLASS NAV ---- */
+.nav {
+  width: 100%;
+  height: 64px;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(0.9px);
+  -webkit-backdrop-filter: blur(0.9px);
+  background-color: var(--background);
+  border-bottom: 1px solid var(--ring);
+
+  transition: background 0.25s ease;
+}
+
+/* DARK MODE */
+[data-theme="dark"] .nav {
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ------ LEFT CONTENT ------ */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  user-select: none;
+  color: var(--card-foreground);
+}
+
+/* ------ NAV LINKS ------ */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.link {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  transition: 0.2s ease;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.activeLink {
+  font-weight: 600;
+  opacity: 1;
+  position: relative;
+}
+
+.activeLink::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-color);
+}
+
+/* ------ RIGHT (THEME TOGGLE) ------ */
+.right {
+  display: flex;
+  align-items: center;
+}
+
+/* Toggle Button */
+.themeToggle {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.themeToggle:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.06);
+}
+
+[data-theme="dark"] .themeToggle {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .themeToggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ------ ICON ------ */
+.themeIcon {
+  transition: transform 0.2s ease;
+}
+
+.themeToggle:hover .themeIcon {
+  transform: rotate(12deg);
+}
+
+/* ------ MOBILE RESPONSIVE ------ */
+@media (max-width: 480px) {
+  .nav {
+    height: 56px;
+    padding: 0 0.85rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .links {
+    gap: 1rem;
+  }
+
+  .link {
+    font-size: 0.85rem;
+  }
+}
+
+.download {
+  border: 1px solid var(--border);
+  padding: 0.3rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.download:hover {
+  border: 1px solid var(--label);
+}

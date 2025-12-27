@@ -1,0 +1,399 @@
+:root {
+  /* Palette (Grayscale / Professional) */
+  --color-black: #111827; /* Titles, Strong Text */
+  --color-dark: #1f2937; /* Body Text */
+  --color-medium: #4b5563; /* Secondary Text */
+  --color-light: #9ca3af; /* Muted Text / Placeholders */
+  --color-border: #e5e7eb; /* Light Borders */
+  --color-border-strong: #111827; /* Total Row Line */
+
+  --bg-paper: #ffffff;
+  --bg-surface: #f9fafb; /* Light Grey Cards */
+
+  /* Typography */
+  --font-base: "Inter", system-ui, -apple-system, sans-serif;
+  --text-xs: 8pt;
+  --text-sm: 9pt;
+  --text-base: 10pt;
+  --text-lg: 12pt;
+  --text-xl: 14pt; /* Total Amount */
+  --text-2xl: 20pt; /* Signature */
+  --text-3xl: 26pt; /* Main Title */
+}
+
+/* =========================================
+   2. PAGE DEFAULTS
+========================================= */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+.invoice,
+.invoice * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* =========================================
+   3. BASE LAYOUT
+========================================= */
+.invoice {
+  /* A4 Dimensions (Standardized to mm) */
+  width: 210mm;
+  min-height: 297mm;
+
+  /* Layout */
+  margin: 0 auto;
+  padding: 12.7mm; /* Converted 0.5in to mm for consistency */
+  background: var(--bg-paper);
+
+  /* Flexbox Column to manage Footer position */
+  display: flex;
+  flex-direction: column;
+
+  /* Typography Defaults */
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  color: var(--color-dark);
+  line-height: 1.4;
+
+  /* Screen Shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   4. HEADER SECTION
+========================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 35px; /* Approx 0.4in */
+}
+
+.branding {
+  display: flex;
+  flex-direction: column;
+  gap: 8pt;
+  max-width: 60%;
+}
+
+.logoBox {
+  margin-bottom: 4pt;
+}
+
+.logoImg {
+  height: auto;
+  max-height: 20mm; /* Approx 0.8in */
+  max-width: 65mm; /* Approx 2.5in */
+  object-fit: contain;
+}
+
+.logoPlaceholder {
+  font-size: 16pt;
+  font-weight: 700;
+  color: #d1d5db; /* Specific placeholder color */
+  margin: 0;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6pt;
+  min-width: 150px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12pt;
+}
+
+.metaRow dt {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-medium);
+  letter-spacing: 0.02em;
+}
+
+.metaRow dd {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* =========================================
+   5. PARTIES (CARDS)
+========================================= */
+.parties {
+  display: flex;
+  gap: 24px; /* 0.25in */
+  margin-bottom: 35px; /* 0.4in */
+
+  /* Prevent cards splitting on pages */
+  page-break-inside: avoid;
+}
+
+.partyCard {
+  flex: 1;
+  background-color: var(--bg-surface);
+  border-radius: 6px;
+  padding: 12pt 16pt;
+  border: 1px solid var(--color-border);
+}
+
+.cardTitle {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-light);
+  margin: 0 0 8pt 0;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 4pt;
+}
+
+.partyContent {
+  font-size: var(--text-base);
+  color: var(--color-medium);
+  line-height: 1.5;
+}
+
+/* Payment List logic inside Card */
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8pt;
+}
+
+.paymentItem {
+  border-bottom: 1px dashed var(--color-border);
+  padding-bottom: 6pt;
+}
+
+.paymentItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.paymentLabel {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 2pt;
+}
+
+.paymentDetails {
+  font-size: var(--text-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+  color: var(--color-medium);
+}
+
+.sellerFallback {
+  color: var(--color-medium);
+}
+.fallbackName {
+  margin-bottom: 2pt;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+/* =========================================
+   6. ITEMS TABLE
+========================================= */
+.itemsSection {
+  margin-bottom: 35px; /* 0.4in */
+  flex-grow: 1; /* Pushes footer down naturally */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-medium);
+  padding: 8pt 4pt;
+  border-bottom: 2px solid var(--color-border);
+  letter-spacing: 0.02em;
+}
+
+.table td {
+  padding: 10pt 4pt;
+  font-size: var(--text-base);
+  border-bottom: 1px solid var(--bg-surface); /* Subtle row lines */
+  color: var(--color-dark);
+  vertical-align: top;
+}
+
+/* Prevent row splitting */
+.table tr {
+  page-break-inside: avoid;
+}
+
+/* Columns */
+.colDesc {
+  text-align: left;
+}
+.colQty {
+  text-align: center;
+  width: 10%;
+}
+.colRate {
+  text-align: center;
+  width: 20%;
+}
+.colAmount {
+  text-align: center;
+  width: 20%;
+  font-weight: 600;
+}
+
+.emptyTable {
+  text-align: center;
+  color: var(--color-light);
+  padding: 20pt;
+  font-style: italic;
+  font-size: var(--text-base);
+}
+
+/* =========================================
+   7. SUMMARY & TOTALS
+========================================= */
+.summaryContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 35px;
+  page-break-inside: avoid;
+}
+
+.summaryBlock {
+  width: 3in; /* Keeping fixed width for alignment */
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 4pt 0;
+  font-size: var(--text-base);
+  color: var(--color-medium);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8pt;
+  margin-top: 8pt;
+  border-top: 2px solid var(--color-border-strong);
+
+  font-weight: 800;
+  font-size: 14pt;
+  color: var(--color-black);
+}
+
+/* =========================================
+   8. FOOTER REGION
+========================================= */
+.footerRegion {
+  margin-top: auto; /* Ensures footer sits at bottom */
+  padding-top: 20pt;
+  page-break-inside: avoid;
+}
+
+.signatureSection {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24pt;
+}
+
+.signatureBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2in;
+}
+
+.signatureImg {
+  height: 0.6in;
+  margin-bottom: 4pt;
+}
+
+.signatureText {
+  font-size: var(--text-2xl); /* Handwriting size */
+  margin-bottom: 4pt;
+  line-height: 1;
+}
+
+.signatureLabel {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  color: var(--color-light);
+  border-top: 1px solid var(--color-border);
+  padding-top: 4pt;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.bottomAddress {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-medium);
+  border-top: 1px solid var(--bg-surface);
+  padding-top: 12pt;
+  margin-bottom: 8pt;
+  line-height: 1.5;
+}
+
+.sellerName {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.separator {
+  margin: 0 6pt;
+  color: var(--color-light);
+}
+
+.footer {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-light);
+  font-style: italic;
+}
+
+/* =========================================
+   9. PRINT OVERRIDES
+========================================= */
+@media print {
+  .invoice {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    padding: 12.7mm; /* Maintain layout margin */
+    min-height: 0;
+  }
+}

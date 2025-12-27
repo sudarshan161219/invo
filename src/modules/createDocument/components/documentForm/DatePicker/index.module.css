@@ -1,0 +1,76 @@
+.root {
+  padding: 0.5rem;
+  /* width: 100px; */
+}
+
+.day {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.day_button {
+  font-size: 0.9rem;
+  border: none;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: var(--border);
+}
+.today {
+  color: var(--primary);
+  background-color: var(--accent);
+  outline: 1px solid var(--border);
+}
+
+.selected {
+  background-color: var(--sidebar-primary);
+}
+
+.chevron {
+  fill: var(--primary);
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+.button_next,
+.button_previous {
+  padding: 0.5rem;
+}
+
+.button_next:hover {
+  background-color: var(--border);
+}
+.button_previous:hover {
+  background-color: var(--border);
+}
+
+.nav {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  right: 10px;
+  top: -3px;
+}
+
+.months {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.month_caption {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font: medium;
+  color: var(--label);
+}
+

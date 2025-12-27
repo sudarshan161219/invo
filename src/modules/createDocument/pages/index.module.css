@@ -1,0 +1,17 @@
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .form {
+    width: 100%;
+  }
+  .preview {
+    position: sticky;
+    top: 1rem;
+    width: 100%;
+    height: fit-content;
+  }
+}

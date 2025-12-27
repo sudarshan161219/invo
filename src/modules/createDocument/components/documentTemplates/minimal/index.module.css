@@ -1,0 +1,335 @@
+/* =========================================
+   1. THEME CONFIGURATION (Variables)
+   "Minimalist" Palette - High Contrast & Clean
+========================================= */
+:root {
+  /* Colors */
+  --color-black: #000000;          /* Strongest text */
+  --color-near-black: #111827;     /* Body text */
+  --color-dark-gray: #374151;      /* Description text */
+  --color-muted: #6b7280;          /* Secondary labels */
+  --color-faint: #9ca3af;          /* Table headers / Borders */
+  --color-border: #e5e7eb;         /* Light borders */
+  --color-border-subtle: #f9fafb;  /* Row dividers */
+  --color-title-faint: #d1d5db;    /* The large "container" text */
+  
+  --bg-paper: #ffffff;
+  --bg-highlight: #f3f4f6;         /* Client section border/bg */
+
+  /* Typography */
+  --font-base: "Inter", system-ui, -apple-system, sans-serif;
+  --text-xs: 8pt;
+  --text-sm: 9pt;
+  --text-base: 10pt;
+  --text-md: 11pt;
+  --text-lg: 14pt;   /* Issuer Name */
+  --text-xl: 16pt;   /* Grand Total */
+  --text-xxl: 24pt;  /* Document Title */
+}
+
+/* =========================================
+   2. PAGE DEFAULTS
+========================================= */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+.container, .container * {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* =========================================
+   3. BASE LAYOUT
+========================================= */
+.container {
+  /* A4 Dimensions */
+  width: 210mm;
+  min-height: 297mm;
+  
+  /* Layout */
+  margin: 0 auto;
+  padding: 12.7mm; /* Exactly 0.5 inches */
+  background: var(--bg-paper);
+  
+  /* Flexbox Column (Pushes footer to bottom) */
+  display: flex;
+  flex-direction: column;
+
+  /* Typography Defaults */
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  color: var(--color-near-black);
+  line-height: 1.4;
+  
+  /* Screen Shadow */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   4. HEADER SECTION
+========================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12.7mm; /* ~0.5in */
+}
+
+.brand {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: auto;
+  max-width: 63mm; /* ~2.5in */
+  max-height: 20mm; /* ~0.8in */
+  object-fit: contain;
+  margin-bottom: 12pt;
+}
+
+.issuerName {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 2pt 0;
+  color: var(--color-black);
+}
+
+.issuerSubtitle, 
+.taxId, 
+.issuerAddress, 
+.contactLine {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: 1.3;
+}
+
+.contactLine {
+  margin-top: 4pt;
+}
+
+/* Header Right Side */
+.meta {
+  text-align: right;
+  min-width: 50mm; /* ~2in */
+}
+
+.docTitle {
+  font-size: var(--text-xxl);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-title-faint); /* The signature "faint" look */
+  margin: 0 0 16pt 0;
+  line-height: 1;
+}
+
+.metaGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8pt;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--color-faint);
+  margin-bottom: 1pt;
+}
+
+.value {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+/* =========================================
+   5. CLIENT & DESCRIPTION
+========================================= */
+.clientSection {
+  display: flex;
+  gap: 12.7mm; /* 0.5in */
+  margin-bottom: 10mm;
+  border-top: 1px solid var(--bg-highlight);
+  padding-top: 16pt;
+  
+  page-break-inside: avoid;
+}
+
+.clientBlock {
+  min-width: 50mm; /* ~2in */
+}
+
+.clientName {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-bottom: 2pt;
+}
+
+.attn, .clientTax {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-bottom: 1pt;
+}
+
+.description {
+  margin-bottom: 10mm;
+  page-break-inside: avoid;
+}
+
+.description p {
+  font-size: var(--text-base);
+  color: var(--color-dark-gray);
+}
+
+/* =========================================
+   6. TABLE (Clean Lines)
+========================================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10mm;
+}
+
+.table th {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-faint);
+  font-weight: 600;
+  padding: 8pt 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+  padding: 10pt 0;
+  border-bottom: 1px solid var(--color-border-subtle); /* Very subtle lines */
+  vertical-align: top;
+  font-size: var(--text-base);
+}
+
+.table tr {
+  page-break-inside: avoid;
+}
+
+/* Alignment Helpers */
+.thDesc, .tdDesc { text-align: left; width: 50%; padding-right: 12pt; }
+.thQty, .tdQty { text-align: center; width: 10%; }
+.thRate, .tdRate { text-align: center; width: 20%; }
+.thTotal, .tdTotal { text-align: center; width: 20%; font-weight: 600; }
+
+/* =========================================
+   7. FOOTER LAYOUT (Pushed to bottom)
+========================================= */
+.footerLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: auto; /* Vital for the "Minimal" look */
+  padding-top: 24pt;
+  page-break-inside: avoid;
+}
+
+.footerLeft {
+  width: 50%;
+  padding-right: 12.7mm;
+}
+
+.footerRight {
+  width: 76mm; /* ~3in fixed width for totals alignment */
+}
+
+/* Payment & Notes */
+.paymentContainer {
+  margin-bottom: 24pt;
+}
+
+.paymentLabel {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin-bottom: 4pt;
+}
+
+.notes p {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  font-style: italic;
+  margin-bottom: 16pt;
+}
+
+/* Signature */
+.signature {
+  margin-top: 24pt;
+}
+
+.signatureImg {
+  height: 15mm; /* ~0.6in */
+  object-fit: contain;
+}
+
+.sigText {
+  font-size: 20pt;
+  font-family: cursive;
+}
+
+.sigLabel {
+  display: block;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-faint);
+  border-top: 1px solid var(--color-border);
+  padding-top: 4pt;
+  margin-top: 4pt;
+  width: 38mm; /* ~1.5in */
+}
+
+/* Summary Numbers */
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6pt;
+  font-size: var(--text-base);
+  color: var(--color-dark-gray);
+}
+
+.grandTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12pt;
+  padding-top: 12pt;
+  border-top: 2px solid var(--color-black);
+  
+  font-size: 16pt;
+  font-weight: 700;
+  color: var(--color-black);
+  letter-spacing: -0.02em;
+}
+
+/* =========================================
+   8. PRINT OVERRIDES
+========================================= */
+@media print {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 12.7mm;
+    box-shadow: none;
+    border: none;
+    min-height: 0;
+  }
+}
