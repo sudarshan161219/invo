@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Menu } from "lucide-react";
-import styles from "./index.module.css";
+import { Menu, ArrowDown, Trash2 } from "lucide-react";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useDocumentTabStore } from "@/store/useDocumentTabStore/useDocumentTabStore";
 import { useDocumentInvoice } from "@/store/DownloadDocumentStore/useDocumentInvoice";
-import { ArrowDown, Trash2 } from "lucide-react";
-import { Button } from "../button/Button";
 import { useModalStore } from "@/store/useModalStore";
 import { useDocumentStore } from "@/store/documentStore/useDocumentStore";
 import { formatString } from "@/lib/formatString";
+import styles from "./index.module.css";
 
 export const Nav = () => {
   const location = useLocation();
@@ -22,6 +20,10 @@ export const Nav = () => {
 
   const { documentDetails } = form;
 
+  // Is the user currently on the setup/home page or the editor?
+  const isEditor =
+    location.pathname !== "/user-details" && location.pathname !== "/";
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
@@ -30,39 +32,54 @@ export const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      {/* Left Section */}
-      {!isMobile && <h1>{formatString(documentDetails.documentType)}</h1>}
-      {isMobile && (
-        <div className={styles.left}>
-          <Menu className="cursor-pointer" onClick={toggleSidebar} />
-          {location.pathname === "/user-details" ? (
-            <NavLink to="/">
-              <h1 className={styles.logo}>Invo</h1>
-            </NavLink>
-          ) : (
-            <h1>{formatString(documentDetails.documentType)}</h1>
-          )}
-        </div>
-      )}
-
-      {/* Right Section */}
-
-      <div>
-        {activeTab === "preview" && (
-          <button className={styles.download} onClick={open}>
-            <ArrowDown size={18} />
+      {/* --- LEFT: Context --- */}
+      <div className={styles.leftSection}>
+        {isMobile && (
+          <button
+            onClick={toggleSidebar}
+            className={styles.menuBtn}
+            aria-label="Toggle menu"
+          >
+            <Menu size={20} />
           </button>
         )}
 
-        <Button
+        {/* Dynamic Title Logic */}
+        {isEditor ? (
+          <div className={styles.titleWrapper}>
+            <span className={styles.docType}>
+              {formatString(documentDetails.documentType)}
+            </span>
+            <span className={styles.docId}>
+              #{documentDetails.documentNumber || "001"}
+            </span>
+          </div>
+        ) : (
+          <NavLink to="/" className={styles.logo}>
+            Invo
+          </NavLink>
+        )}
+      </div>
+
+      {/* --- RIGHT: Actions --- */}
+      <div className={styles.rightSection}>
+        {/* Clear Data (Subtle) */}
+        <button
           onClick={openClearDataModal}
-          size="md"
-          variant="danger"
-          className="flex items-center gap-1.5"
+          className={styles.clearBtn}
+          title="Clear all data"
         >
-          <Trash2 size={14} />
-          Clear Data
-        </Button>
+          <Trash2 size={16} />
+          <span>Clear</span>
+        </button>
+
+        {/* Download (Primary - Only if Preview is active) */}
+        {activeTab === "preview" && (
+          <button onClick={open} className={styles.downloadBtn}>
+            <ArrowDown size={16} />
+            <span className="hidden sm:inline">Export</span>
+          </button>
+        )}
       </div>
     </nav>
   );

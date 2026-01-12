@@ -1,65 +1,164 @@
-.container {
+.overlay {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
-}
-
-.bg {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(0.9px);
-}
-
-.card {
-  position: relative;
-  background-color: var(--signature-card);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
   padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
   width: 100%;
-  max-width: 42rem;
-  z-index: 10;
-}
-
-.title {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: var(--label);
-}
-
-.buttons {
+  max-width: 28rem; /* max-w-md */
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  animation: scaleIn 0.2s ease-out;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  z-index: 100;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 12px;
+.header {
+  padding: 1.25rem 1.5rem 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.btn {
-  cursor: pointer;
+.titleWrapper h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0.25rem 0 0 0;
+}
+
+.listContainer {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* --- The Option Row (Button) --- */
+.optionBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.closeBtn {
-  margin-top: 16px;
-  width: 100%;
-  cursor: pointer;
+.optionBtn:hover:not(:disabled) {
+  background-color: var(--secondary);
+}
+
+.optionBtn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.optionBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Icon Box */
+.iconBox {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  color: var(--foreground);
+  transition: background-color 0.2s;
+}
+
+.optionBtn:hover .iconBox {
+  background-color: var(--background); /* Invert slightly on hover */
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+/* Text Content */
+.content {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.desc {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin-top: 0.1rem;
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background-color: var(--muted); /* Subtle distinction */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Specific Icon Colors (Optional - nice touch) */
+.pdfIcon {
+  color: #ef4444;
+}
+.imgIcon {
+  color: #3b82f6;
+}
+.dataIcon {
+  color: #f59e0b;
+}
+.printIcon {
+  color: #64748b;
 }

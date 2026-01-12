@@ -1,79 +1,390 @@
 .wrapper {
-  position: relative;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column; /* Changed to column to stack Nav + Content */
+  align-items: center;
+  /* justify-content: center;  <-- Remove this to allow Nav to sit at top */
+  padding: 1.5rem; /* Add padding for mobile */
+  font-family: inherit;
+}
+
+/* --- New Navigation --- */
+.nav {
+  width: 100%;
+  max-width: 56rem; /* Matches container width */
+  margin-bottom: 2rem; /* Space between logo and hero */
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  justify-content: flex-start; /* Logo on the left */
 }
 
-.card {
-  max-width: 480px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  user-select: none;
+}
+
+.brandName {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: var(--foreground);
+}
+
+.container {
   width: 100%;
-  text-align: center;
-
-  padding: 2.5rem 2rem;
-  border-radius: 16px;
-
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
-  animation: fadeIn 0.4s ease;
+  max-width: 56rem; /* equivalent to max-w-4xl */
+  margin: 0 auto;
 }
 
-[data-theme="dark"] .card {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* --- Hero Section --- */
+.hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.highlight {
+  /* Using standard blue or your primary color */
+  color: #3b82f6;
+}
+
+/* Optional: use your theme primary if preferred */
+/* .highlight { color: var(--primary); } */
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  max-width: 32rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Resume Card (Unsaved Work) --- */
+.resumeWrapper {
+  max-width: 28rem; /* max-w-md */
+  margin: 0 auto 2.5rem auto;
+  transition: transform 0.2s ease;
+}
+
+.resumeWrapper:hover {
+  transform: translateY(-4px);
+}
+
+.resumeCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Accent bar on the left */
+.resumeAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #3b82f6; /* Blue accent */
+}
+
+.resumeContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.resumeIconBox {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  color: var(--foreground); /* Or keep specific blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumeText h3 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--card-foreground);
+}
+
+.resumeText p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.resumeButton {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.resumeButton:hover {
+  opacity: 0.9;
+}
+
+/* --- Separator --- */
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 28rem;
+  margin: 0 auto 2rem auto;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.separatorText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Grid Layout --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 48rem; /* max-w-3xl */
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  color: var(--card-foreground);
+}
+
+.card:hover {
+  border-color: var(--ring); /* Use ring color for hover state */
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+}
+
+.iconWrapper {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.2s;
+  /* Default gray for fallback */
+  background-color: var(--secondary);
+  color: var(--foreground);
+}
+
+.card:hover .iconWrapper {
+  transform: scale(1.1);
+}
+
+.cardLabel {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--card-foreground);
+}
+
+.cardDesc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* --- Specific Icon Colors (using RGB for transparency) --- */
+/* These hardcoded colors are necessary for the distinct visual ID of doc types 
+   You can replace these with var(--chart-1), var(--chart-2) etc if you prefer strict theme usage */
+
+.invoiceIcon {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+.taxIcon {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+}
+.quoteIcon {
+  background-color: rgba(147, 51, 234, 0.1);
+  color: #9333ea;
+}
+.estimateIcon {
+  background-color: rgba(217, 119, 6, 0.1);
+  color: #d97706;
+}
+.receiptIcon {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+.creditIcon {
+  background-color: rgba(225, 29, 72, 0.1);
+  color: #e11d48;
 }
 
 .subtitle {
-  opacity: 0.8;
-  font-size: 1rem;
-  margin-bottom: 1.8rem;
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  max-width: 32rem;
+  margin: 0 auto 1.5rem auto; /* Adjusted margin */
+  line-height: 1.6;
 }
 
-.startBtn {
-  width: 100%;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
+/* --- New Feature Pills --- */
+.featureRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Fade animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--foreground);
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px; /* Pill shape */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  cursor: default;
+  transition: border-color 0.2s;
 }
 
-/* MOBILE */
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.5rem;
-  }
-  .subtitle {
-    font-size: 0.9rem;
-  }
-  .card {
-    padding: 2rem 1.4rem;
-  }
+.featureItem:hover {
+  border-color: var(--ring);
+}
 
-  .wrapper {
-    padding: 1rem;
-  }
+/* --- Info / Data Warning Box --- */
+.infoBox {
+  max-width: 36rem;
+  margin: 0 auto 2rem auto;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary); /* Subtle background */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+.infoIcon {
+  color: var(--muted-foreground); /* Or use an accent color like #3b82f6 */
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.infoText strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* Update resumeWrapper margin to sit nicely under the info box */
+.resumeWrapper {
+  max-width: 28rem;
+  margin: 0 auto 2rem auto;
+  /* ... rest of resumeWrapper styles ... */
+}
+
+.footer {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footerLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footerLink:hover {
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+/* Optional: Specific brand colors on hover if you want them */
+.footerLink:hover :global(.lucide-twitter) {
+  color: #1da1f2; /* or black for X */
+}
+
+.footerLink:hover :global(.lucide-coffee) {
+  color: #ffdd00;
 }

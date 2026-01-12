@@ -11,68 +11,70 @@ function isExpired(timestamp: number) {
 }
 
 export const TempDataNotice = () => {
+  // FIX: Read storage inside useState initializer (Lazy Initialization)
   const [open, setOpen] = useState(() => {
+    if (typeof window === "undefined") return false; // Safety for SSR contexts
+
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
+
+      // If no key exists, show the notice (default true)
       if (!raw) return true;
 
       const data = JSON.parse(raw);
 
+      // If dismissed and NOT expired, hide it (false)
       if (data.dismissed && !isExpired(data.timestamp)) {
-        return false; // keep hidden
+        return false;
       }
-    } catch {
-      console.log("");
+
+      // Otherwise show it
+      return true;
+    } catch (e) {
+      console.error("Error reading storage:", e);
+      return true; // Default to showing on error
     }
-    return true; // show it
   });
 
   const handleClose = () => {
     setOpen(false);
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        dismissed: true,
-        timestamp: Date.now(),
-      })
-    );
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          dismissed: true,
+          timestamp: Date.now(),
+        })
+      );
+    } catch (e) {
+      console.error("Failed to save notice preference", e);
+    }
   };
 
   if (!open) return null;
 
   return (
     <div role="status" aria-live="polite" className={styles.container}>
-      {/* Added border-l-4 for a standard 'warning' card look */}
-      <div className={`${styles.card} border-l-4 border-amber-500 bg-amber-50`}>
-        <div className="flex items-start justify-between">
-          <div className="flex gap-3">
-            {/* Icon fixed width prevents squishing */}
-            <CircleAlert
-              size={20}
-              className="text-amber-600 shrink-0  mt-0.5"
-            />
-
-            <div>
-              <h3 className="font-medium text-amber-900">
-                No Sign-Up Required
-              </h3>
-              <p className="text-sm text-amber-800 mt-1">
-                Your data is saved locally in your browser while you work.
-                <span className="font-semibold ml-1">
-                  Closing this tab will lose your progress.
-                </span>
-              </p>
-            </div>
+      <div className={styles.card}>
+        <div className={styles.contentWrapper}>
+          <CircleAlert size={20} className={styles.icon} />
+          <div className={styles.textContent}>
+            <h3>No Sign-Up Required</h3>
+            <p>
+              Your data is saved locally in your browser.
+              <strong> Export PDF</strong> to save permanently. (Clearing cache
+              will delete data).
+            </p>
           </div>
-
-          <button
-            onClick={handleClose}
-            aria-label="Dismiss notice"
-            className="text-amber-500 cursor-pointer hover:text-amber-700 hover:bg-amber-100 rounded-full p-1 transition-colors ml-4"
-          >
-            <CircleX size={20} />
-          </button>
         </div>
+
+        <button
+          onClick={handleClose}
+          aria-label="Dismiss notice"
+          className={styles.closeBtn}
+        >
+          <CircleX size={20} />
+        </button>
       </div>
     </div>
   );
