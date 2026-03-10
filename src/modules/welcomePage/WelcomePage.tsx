@@ -45,7 +45,7 @@ export const WelcomePage = () => {
     // 1. Data Loss Warning Logic
     if (hasUnsavedWork) {
       const confirm = window.confirm(
-        "You have an unfinished document. Starting a new one will replace it. Are you sure?"
+        "You have an unfinished document. Starting a new one will replace it. Are you sure?",
       );
       if (!confirm) return;
     }
@@ -113,6 +113,19 @@ export const WelcomePage = () => {
       <nav className={styles.nav}>
         <div className={styles.brand}>
           <span className={styles.brandName}>Invo</span>
+
+          <a
+            href="https://www.buildinprocess.com/product/invo"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="https://www.buildinprocess.com/badges/badge-2-dark.svg"
+              alt="Featured on BuildInProcess"
+              width="170"
+              height="48"
+            />
+          </a>
         </div>
       </nav>
       <div className={styles.container}>

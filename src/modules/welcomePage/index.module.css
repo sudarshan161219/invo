@@ -3,26 +3,27 @@
   background-color: var(--background);
   color: var(--foreground);
   display: flex;
-  flex-direction: column; /* Changed to column to stack Nav + Content */
+  flex-direction: column; 
   align-items: center;
-  /* justify-content: center;  <-- Remove this to allow Nav to sit at top */
-  padding: 1.5rem; /* Add padding for mobile */
+  padding: 1.5rem; 
   font-family: inherit;
 }
 
-/* --- New Navigation --- */
+
 .nav {
   width: 100%;
-  max-width: 56rem; /* Matches container width */
-  margin-bottom: 2rem; /* Space between logo and hero */
+  max-width: 56rem; 
+  margin-bottom: 2rem; 
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Logo on the left */
+  justify-content: flex-start; 
 }
 
 .brand {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.6rem;
   text-decoration: none;
   user-select: none;
@@ -37,7 +38,7 @@
 
 .container {
   width: 100%;
-  max-width: 56rem; /* equivalent to max-w-4xl */
+  max-width: 56rem; 
   margin: 0 auto;
 }
 
@@ -72,12 +73,9 @@
 }
 
 .highlight {
-  /* Using standard blue or your primary color */
   color: #3b82f6;
 }
 
-/* Optional: use your theme primary if preferred */
-/* .highlight { color: var(--primary); } */
 
 .subtitle {
   font-size: 1.125rem;
@@ -119,7 +117,7 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background-color: #3b82f6; /* Blue accent */
+  background-color: #3b82f6;
 }
 
 .resumeContent {
@@ -133,7 +131,7 @@
   width: 2.5rem;
   border-radius: 50%;
   background-color: var(--secondary);
-  color: var(--foreground); /* Or keep specific blue */
+  color: var(--foreground); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,7 +197,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-width: 48rem; /* max-w-3xl */
+  max-width: 48rem; 
   margin: 0 auto;
 }
 
@@ -225,7 +223,7 @@
 }
 
 .card:hover {
-  border-color: var(--ring); /* Use ring color for hover state */
+  border-color: var(--ring); 
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
 }
 
@@ -234,7 +232,6 @@
   border-radius: 0.75rem;
   margin-bottom: 0.75rem;
   transition: transform 0.2s;
-  /* Default gray for fallback */
   background-color: var(--secondary);
   color: var(--foreground);
 }
@@ -254,10 +251,6 @@
   font-size: 0.75rem;
   color: var(--muted-foreground);
 }
-
-/* --- Specific Icon Colors (using RGB for transparency) --- */
-/* These hardcoded colors are necessary for the distinct visual ID of doc types 
-   You can replace these with var(--chart-1), var(--chart-2) etc if you prefer strict theme usage */
 
 .invoiceIcon {
   background-color: rgba(59, 130, 246, 0.1);
@@ -326,7 +319,7 @@
   max-width: 36rem;
   margin: 0 auto 2rem auto;
   padding: 0.75rem 1rem;
-  background-color: var(--secondary); /* Subtle background */
+  background-color: var(--secondary); 
   border: 1px solid var(--border);
   border-radius: var(--radius);
   display: flex;
@@ -338,7 +331,7 @@
 }
 
 .infoIcon {
-  color: var(--muted-foreground); /* Or use an accent color like #3b82f6 */
+  color: var(--muted-foreground); 
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -348,11 +341,10 @@
   font-weight: 600;
 }
 
-/* Update resumeWrapper margin to sit nicely under the info box */
+
 .resumeWrapper {
   max-width: 28rem;
   margin: 0 auto 2rem auto;
-  /* ... rest of resumeWrapper styles ... */
 }
 
 .footer {
@@ -380,7 +372,6 @@
   transform: translateY(-1px);
 }
 
-/* Optional: Specific brand colors on hover if you want them */
 .footerLink:hover :global(.lucide-twitter) {
   color: #1da1f2; /* or black for X */
 }
