@@ -115,13 +115,13 @@ export const WelcomePage = () => {
           <span className={styles.brandName}>Invo</span>
 
           <a
-            href="https://www.buildinprocess.com/product/invo"
+            href="https://forg.to/products/invo"
             target="_blank"
             rel="noopener"
           >
             <img
-              src="https://www.buildinprocess.com/badges/badge-2-dark.svg"
-              alt="Featured on BuildInProcess"
+              src="https://forg.to/badges/badge-2-dark.svg"
+              alt="Featured on Forg"
               width="170"
               height="48"
             />
